@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+
+const val SEND_KEY = "message"
+const val RECEIVE_KEY = "incoming"
 
 class DisplayActivity : AppCompatActivity() {
 
@@ -20,6 +24,20 @@ class DisplayActivity : AppCompatActivity() {
 
         lyricsDisplayTextView = findViewById(R.id.lyricsDisplayTextView)
         textSizeSelectorButton = findViewById(R.id.textSizeSelectorButton)
+
+        val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        {
+            if(it.resultCode == RESULT_OK)
+            {
+                it.data?.apply {
+                    lyricsDisplayTextView.textSize = getStringExtra(RECEIVE_KEY).toString().toFloat()
+                }
+            }
+        }
+
+        textSizeSelectorButton.setOnClickListener{
+
+        }
 
     }
 }
