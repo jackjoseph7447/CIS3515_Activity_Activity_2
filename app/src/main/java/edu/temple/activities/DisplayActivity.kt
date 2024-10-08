@@ -24,7 +24,7 @@ class DisplayActivity : AppCompatActivity() {
         if(it.resultCode == RESULT_OK)
         {
             it.data?.apply {
-                lyricsDisplayTextView.textSize = getStringExtra(RECEIVE_KEY).toString().toFloat()
+                lyricsDisplayTextView.textSize = getIntExtra("result", 22).toString().toFloat()
             }
         }
     }
@@ -42,5 +42,14 @@ class DisplayActivity : AppCompatActivity() {
             launcher.launch(launcherIntent)
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+    {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1)
+        {
+
+        }
     }
 }

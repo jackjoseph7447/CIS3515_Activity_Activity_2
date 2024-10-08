@@ -1,5 +1,6 @@
 package edu.temple.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,9 +26,9 @@ class TextSizeActivity : AppCompatActivity() {
             // TODO Step 2: Pass selected value back to activity that launched TextSizeActivity
 
 
-            adapter = TextSizeAdapter(textSizes){
-                val message = intent.getStringExtra(SEND_KEY)
-
+            adapter = TextSizeAdapter(textSizes){ fontSize ->
+                setResult(RESULT_OK, Intent().putExtra("result", fontSize))
+                finish()
             }
             layoutManager = LinearLayoutManager(this@TextSizeActivity)
         }
